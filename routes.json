@@ -1,0 +1,8 @@
+{
+  "/api/tracks": "/tracks",
+  "/api/tracks/:id": "/tracks/:id",
+  "/api/playlists": "/playlists",
+  "/api/playlists/:id": "/playlists/:id",
+  "/api/users": "/users",
+  "/api/users/:id": "/users/:id"
+}

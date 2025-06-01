@@ -1,0 +1,333 @@
+{
+  "tracks": [
+    {
+      "id": "1",
+      "title": "Bohemian Rhapsody",
+      "artist": "Queen",
+      "album": "A Night at the Opera",
+      "duration": 354,
+      "url": "/audio/bohemian-rhapsody.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Rock",
+      "releaseDate": "1975-10-31",
+      "playCount": 1500000,
+      "isLiked": true
+    },
+    {
+      "id": "2",
+      "title": "Hotel California",
+      "artist": "Eagles",
+      "album": "Hotel California",
+      "duration": 391,
+      "url": "/audio/hotel-california.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Rock",
+      "releaseDate": "1976-12-08",
+      "playCount": 1200000,
+      "isLiked": false
+    },
+    {
+      "id": "3",
+      "title": "Billie Jean",
+      "artist": "Michael Jackson",
+      "album": "Thriller",
+      "duration": 294,
+      "url": "/audio/billie-jean.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Pop",
+      "releaseDate": "1982-11-30",
+      "playCount": 2000000,
+      "isLiked": true
+    },
+    {
+      "id": "4",
+      "title": "Stairway to Heaven",
+      "artist": "Led Zeppelin",
+      "album": "Led Zeppelin IV",
+      "duration": 482,
+      "url": "/audio/stairway-to-heaven.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Rock",
+      "releaseDate": "1971-11-08",
+      "playCount": 1800000,
+      "isLiked": false
+    },
+    {
+      "id": "5",
+      "title": "Imagine",
+      "artist": "John Lennon",
+      "album": "Imagine",
+      "duration": 183,
+      "url": "/audio/imagine.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Pop",
+      "releaseDate": "1971-09-09",
+      "playCount": 1300000,
+      "isLiked": true
+    },
+    {
+      "id": "6",
+      "title": "Sweet Child O' Mine",
+      "artist": "Guns N' Roses",
+      "album": "Appetite for Destruction",
+      "duration": 356,
+      "url": "/audio/sweet-child.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Rock",
+      "releaseDate": "1987-07-21",
+      "playCount": 1100000,
+      "isLiked": false
+    },
+    {
+      "id": "7",
+      "title": "Smells Like Teen Spirit",
+      "artist": "Nirvana",
+      "album": "Nevermind",
+      "duration": 301,
+      "url": "/audio/teen-spirit.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Rock",
+      "releaseDate": "1991-09-10",
+      "playCount": 1600000,
+      "isLiked": true
+    },
+    {
+      "id": "8",
+      "title": "One More Time",
+      "artist": "Daft Punk",
+      "album": "Discovery",
+      "duration": 320,
+      "url": "/audio/one-more-time.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Electronic",
+      "releaseDate": "2000-11-13",
+      "playCount": 900000,
+      "isLiked": false
+    },
+    {
+      "id": "07ba"
+    },
+    {
+      "id": "24ee"
+    },
+    {
+      "id": "4dcf"
+    }
+  ],
+  "playlists": [
+    {
+      "id": "1",
+      "name": "Мои любимые",
+      "description": "Самые любимые треки всех времен",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "tracks": [
+        {
+          "id": "1",
+          "title": "Bohemian Rhapsody",
+          "artist": "Queen",
+          "album": "A Night at the Opera",
+          "duration": 354,
+          "url": "/audio/bohemian-rhapsody.mp3",
+          "coverUrl": "/images/albums/placeholder.svg",
+          "genre": "Rock",
+          "releaseDate": "1975-10-31",
+          "playCount": 1500000,
+          "isLiked": true
+        },
+        {
+          "id": "3",
+          "title": "Billie Jean",
+          "artist": "Michael Jackson",
+          "album": "Thriller",
+          "duration": 294,
+          "url": "/audio/billie-jean.mp3",
+          "coverUrl": "/images/albums/placeholder.svg",
+          "genre": "Pop",
+          "releaseDate": "1982-11-30",
+          "playCount": 2000000,
+          "isLiked": true
+        }
+      ],
+      "createdBy": "user1",
+      "isPublic": true,
+      "createdAt": "2025-01-01T10:00:00Z",
+      "updatedAt": "2025-01-01T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Рок классика",
+      "description": "Лучшие рок-хиты всех времен",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "tracks": [
+        {
+          "id": "2",
+          "title": "Hotel California",
+          "artist": "Eagles",
+          "album": "Hotel California",
+          "duration": 391,
+          "url": "/audio/hotel-california.mp3",
+          "coverUrl": "/images/albums/placeholder.svg",
+          "genre": "Rock",
+          "releaseDate": "1976-12-08",
+          "playCount": 1200000,
+          "isLiked": false
+        },
+        {
+          "id": "4",
+          "title": "Stairway to Heaven",
+          "artist": "Led Zeppelin",
+          "album": "Led Zeppelin IV",
+          "duration": 482,
+          "url": "/audio/stairway-to-heaven.mp3",
+          "coverUrl": "/images/albums/placeholder.svg",
+          "genre": "Rock",
+          "releaseDate": "1971-11-08",
+          "playCount": 1800000,
+          "isLiked": false
+        }
+      ],
+      "createdBy": "user1",
+      "isPublic": false,
+      "createdAt": "2025-01-02T15:30:00Z",
+      "updatedAt": "2025-01-02T15:30:00Z"
+    },
+    {
+      "id": "598e",
+      "name": "123",
+      "description": "",
+      "isPublic": true,
+      "coverUrl": "/images/albums/placeholder.svg",
+      "trackIds": [
+        "1",
+        "2",
+        "7"
+      ],
+      "createdBy": "user1",
+      "createdAt": "2025-01-03T12:00:00Z",
+      "updatedAt": "2025-01-03T12:00:00Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "user1",
+      "email": "user@example.com",
+      "name": "Пользователь",
+      "role": "listener",
+      "avatar": "/placeholder-user.jpg"
+    },
+    {
+      "id": "artist1",
+      "email": "artist@example.com",
+      "name": "Исполнитель",
+      "role": "artist",
+      "avatar": "/placeholder-user.jpg"
+    },
+    {
+      "id": "admin1",
+      "email": "admin@example.com",
+      "name": "Администратор",
+      "role": "admin",
+      "avatar": "/placeholder-user.jpg"
+    }
+  ],
+  "favoriteTracks": [
+    {
+      "id": "1",
+      "title": "Bohemian Rhapsody",
+      "artist": "Queen",
+      "album": "A Night at the Opera",
+      "duration": 354,
+      "url": "/audio/bohemian-rhapsody.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Rock",
+      "releaseDate": "1975-10-31",
+      "playCount": 1500000,
+      "isLiked": true
+    },
+    {
+      "id": "3",
+      "title": "Billie Jean",
+      "artist": "Michael Jackson",
+      "album": "Thriller",
+      "duration": 294,
+      "url": "/audio/billie-jean.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Pop",
+      "releaseDate": "1982-11-30",
+      "playCount": 2000000,
+      "isLiked": true
+    },
+    {
+      "id": "5",
+      "title": "Imagine",
+      "artist": "John Lennon",
+      "album": "Imagine",
+      "duration": 183,
+      "url": "/audio/imagine.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Pop",
+      "releaseDate": "1971-09-09",
+      "playCount": 1300000,
+      "isLiked": true
+    },
+    {
+      "id": "7",
+      "title": "Smells Like Teen Spirit",
+      "artist": "Nirvana",
+      "album": "Nevermind",
+      "duration": 301,
+      "url": "/audio/teen-spirit.mp3",
+      "coverUrl": "/images/albums/placeholder.svg",
+      "genre": "Rock",
+      "releaseDate": "1991-09-10",
+      "playCount": 1600000,
+      "isLiked": true
+    }
+  ],
+  "favorites": [
+    {
+      "userId": "user1",
+      "trackIds": [
+        "1",
+        "3",
+        "5",
+        "7"
+      ],
+      "id": "1910"
+    }
+  ],
+  "recommendations": [
+    {
+      "userId": "user1",
+      "tracks": [
+        {
+          "id": "6",
+          "title": "Sweet Child O' Mine",
+          "artist": "Guns N' Roses",
+          "album": "Appetite for Destruction",
+          "duration": 356,
+          "url": "/audio/sweet-child.mp3",
+          "coverUrl": "/images/albums/placeholder.svg",
+          "genre": "Rock",
+          "releaseDate": "1987-07-21",
+          "playCount": 1100000,
+          "isLiked": false
+        },
+        {
+          "id": "8",
+          "title": "One More Time",
+          "artist": "Daft Punk",
+          "album": "Discovery",
+          "duration": 320,
+          "url": "/audio/one-more-time.mp3",
+          "coverUrl": "/images/albums/placeholder.svg",
+          "genre": "Electronic",
+          "releaseDate": "2000-11-13",
+          "playCount": 900000,
+          "isLiked": false
+        }
+      ],
+      "id": "db6b"
+    }
+  ]
+}

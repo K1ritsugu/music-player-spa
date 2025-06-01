@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Album Cover Generator</title>
+    <style>
+        .album-cover {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px;
+            border-radius: 8px;
+        }
+        .queen { background: linear-gradient(45deg, #8B5CF6, #EC4899); }
+        .eagles { background: linear-gradient(45deg, #F59E0B, #EF4444); }
+        .jackson { background: linear-gradient(45deg, #10B981, #3B82F6); }
+        .zeppelin { background: linear-gradient(45deg, #6B7280, #1F2937); }
+        .lennon { background: linear-gradient(45deg, #F97316, #84CC16); }
+    </style>
+</head>
+<body>
+    <h1>Album Covers for Music Player</h1>
+    
+    <div class="album-cover queen">
+        Queen<br>
+        A Night at the Opera
+    </div>
+    
+    <div class="album-cover eagles">
+        Eagles<br>
+        Hotel California
+    </div>
+    
+    <div class="album-cover jackson">
+        Michael Jackson<br>
+        Thriller
+    </div>
+    
+    <div class="album-cover zeppelin">
+        Led Zeppelin<br>
+        Led Zeppelin IV
+    </div>
+    
+    <div class="album-cover lennon">
+        John Lennon<br>
+        Imagine
+    </div>
+    
+    <script>
+        // Функция для создания canvas и сохранения как изображение
+        function generateCovers() {
+            const covers = document.querySelectorAll('.album-cover');
+            covers.forEach((cover, index) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 300;
+                canvas.height = 300;
+                const ctx = canvas.getContext('2d');
+                
+                // Получаем стили элемента
+                const styles = window.getComputedStyle(cover);
+                const background = styles.background;
+                
+                // Простой градиент
+                const gradient = ctx.createLinearGradient(0, 0, 300, 300);
+                
+                // Разные градиенты для разных альбомов
+                switch(index) {
+                    case 0: // Queen
+                        gradient.addColorStop(0, '#8B5CF6');
+                        gradient.addColorStop(1, '#EC4899');
+                        break;
+                    case 1: // Eagles
+                        gradient.addColorStop(0, '#F59E0B');
+                        gradient.addColorStop(1, '#EF4444');
+                        break;
+                    case 2: // Jackson
+                        gradient.addColorStop(0, '#10B981');
+                        gradient.addColorStop(1, '#3B82F6');
+                        break;
+                    case 3: // Zeppelin
+                        gradient.addColorStop(0, '#6B7280');
+                        gradient.addColorStop(1, '#1F2937');
+                        break;
+                    case 4: // Lennon
+                        gradient.addColorStop(0, '#F97316');
+                        gradient.addColorStop(1, '#84CC16');
+                        break;
+                }
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 300, 300);
+                
+                // Добавляем текст
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 18px Arial';
+                ctx.textAlign = 'center';
+                
+                const text = cover.textContent.trim();
+                const lines = text.split('\n');
+                lines.forEach((line, lineIndex) => {
+                    ctx.fillText(line, 150, 140 + (lineIndex * 25));
+                });
+                
+                // Создаем ссылку для скачивания
+                const link = document.createElement('a');
+                link.download = cover.className.split(' ')[1] + '-cover.jpg';
+                link.href = canvas.toDataURL('image/jpeg', 0.9);
+                document.body.appendChild(link);
+            });
+        }
+        
+        // Добавляем кнопку для генерации
+        const button = document.createElement('button');
+        button.textContent = 'Generate Album Covers';
+        button.onclick = generateCovers;
+        document.body.appendChild(button);
+    </script>
+</body>
+</html>
