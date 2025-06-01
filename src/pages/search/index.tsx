@@ -7,10 +7,6 @@ import {
   Container, 
   TextField, 
   Grid, 
-  FormControl, 
-  InputLabel, 
-  Select, 
-  MenuItem, 
   Chip,
   CircularProgress,
   Alert

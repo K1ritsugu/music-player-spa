@@ -7,8 +7,7 @@ import {
   Typography, 
   Container, 
   Grid, 
-  Card, 
-  CardContent, 
+  Card,
   CardMedia,
   IconButton,
   Button,
@@ -21,9 +20,7 @@ import {
   TextField,
   Chip,
   CircularProgress,
-  Alert,
-  Stack,
-  Divider
+  Alert
 } from "@mui/material"
 import { 
   ArrowBack, 
