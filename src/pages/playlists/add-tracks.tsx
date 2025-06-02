@@ -22,6 +22,7 @@ import {
   Add
 } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
+import { MobileHeader } from "@/widgets/mobile-header"
 import { 
   useGetPlaylistByIdQuery, 
   useAddTrackToPlaylistMutation
@@ -69,11 +70,21 @@ export default function AddTracksToPlaylistPage() {
     const remainingSeconds = seconds % 60
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
   }
+
   if (playlistLoading || tracksLoading) {
     return (
       <Box sx={{ display: "flex" }}>
+        <MobileHeader />
         <Sidebar onClose={() => {}} />
-        <Box sx={{ flexGrow: 1, p: 3, ml: "240px", display: "flex", justifyContent: "center", alignItems: "center", minHeight: "50vh" }}>
+        <Box sx={{ 
+          flexGrow: 1, 
+          p: { xs: 2, sm: 3 }, 
+          pt: { xs: "64px", md: 1 },
+          display: "flex", 
+          justifyContent: "center", 
+          alignItems: "center", 
+          minHeight: "50vh" 
+        }}>
           <CircularProgress size={60} />
         </Box>
       </Box>
@@ -83,8 +94,13 @@ export default function AddTracksToPlaylistPage() {
   if (!playlist) {
     return (
       <Box sx={{ display: "flex" }}>
+        <MobileHeader />
         <Sidebar onClose={() => {}} />
-        <Box sx={{ flexGrow: 1, p: 3, ml: "240px" }}>
+        <Box sx={{ 
+          flexGrow: 1, 
+          p: { xs: 2, sm: 3 }, 
+          pt: { xs: "64px", md: 1 }
+        }}>
           <Container maxWidth="lg">
             <Alert severity="error">
               Плейлист не найден
@@ -97,15 +113,36 @@ export default function AddTracksToPlaylistPage() {
 
   return (
     <Box sx={{ display: "flex" }}>
+      <MobileHeader />
       <Sidebar onClose={() => {}} />
 
-      <Box sx={{ flexGrow: 1, p: 3, ml: "240px", pb: "100px" }}>
+      <Box sx={{ 
+        flexGrow: 1, 
+        p: { xs: 2, sm: 3 }, 
+        pt: { xs: "64px", md: 1 },
+        pb: "100px" 
+      }}>
         <Container maxWidth="lg">
-          <Box sx={{ display: "flex", alignItems: "center", mb: 4 }}>
-            <IconButton onClick={() => navigate(`/playlists/${playlist.id}`)} sx={{ mr: 2 }}>
+          <Box sx={{ 
+            display: "flex", 
+            alignItems: { xs: "flex-start", sm: "center" }, 
+            mb: 4,
+            flexDirection: { xs: "column", sm: "row" },
+            gap: { xs: 2, sm: 0 }
+          }}>
+            <IconButton 
+              onClick={() => navigate(`/playlists/${playlist.id}`)} 
+              sx={{ mr: { xs: 0, sm: 2 }, alignSelf: { xs: "flex-start", sm: "center" } }}
+            >
               <ArrowBack />
             </IconButton>
-            <Typography variant="h4" sx={{ flex: 1 }}>
+            <Typography 
+              variant="h4" 
+              sx={{ 
+                flex: 1,
+                fontSize: { xs: "1.5rem", sm: "2.125rem" }
+              }}
+            >
               Добавить треки в "{playlist.name}"
             </Typography>
             <Button
@@ -113,6 +150,10 @@ export default function AddTracksToPlaylistPage() {
               startIcon={<Add />}
               onClick={handleAddTracks}
               disabled={selectedTracks.length === 0 || isAdding}
+              sx={{ 
+                width: { xs: "100%", sm: "auto" },
+                fontSize: { xs: "0.875rem", sm: "1rem" }
+              }}
             >
               {isAdding ? <CircularProgress size={20} /> : `Добавить (${selectedTracks.length})`}
             </Button>
@@ -123,7 +164,7 @@ export default function AddTracksToPlaylistPage() {
               Все доступные треки уже добавлены в этот плейлист
             </Alert>
           ) : (
-            <Grid container spacing={2}>
+            <Grid container spacing={{ xs: 1, sm: 2 }}>
               {availableTracks.map((track) => (
                 <Grid item xs={12} key={track.id}>
                   <Card 
@@ -133,27 +174,48 @@ export default function AddTracksToPlaylistPage() {
                       backgroundColor: selectedTracks.includes(track.id) ? "action.selected" : "transparent"
                     }}
                   >
-                    <CardContent sx={{ py: 2 }}>
-                      <Stack direction="row" spacing={2} alignItems="center">
+                    <CardContent sx={{ py: { xs: 1.5, sm: 2 } }}>
+                      <Stack 
+                        direction="row" 
+                        spacing={{ xs: 1, sm: 2 }} 
+                        alignItems="center"
+                      >
                         <Checkbox
                           checked={selectedTracks.includes(track.id)}
                           onChange={() => handleTrackToggle(track.id)}
                         />
                         <CardMedia
                           component="img"
-                          sx={{ width: 50, height: 50, borderRadius: 1 }}
+                          sx={{ 
+                            width: { xs: 40, sm: 50 }, 
+                            height: { xs: 40, sm: 50 }, 
+                            borderRadius: 1 
+                          }}
                           image={track.coverUrl || '/placeholder.jpg'}
                           alt={track.title}
                         />
                         <Box sx={{ flex: 1, minWidth: 0 }}>
-                          <Typography variant="subtitle2" noWrap>
+                          <Typography 
+                            variant="subtitle2" 
+                            noWrap
+                            sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}
+                          >
                             {track.title}
                           </Typography>
-                          <Typography variant="body2" color="text.secondary" noWrap>
+                          <Typography 
+                            variant="body2" 
+                            color="text.secondary" 
+                            noWrap
+                            sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                          >
                             {track.artist}
                           </Typography>
                         </Box>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography 
+                          variant="body2" 
+                          color="text.secondary"
+                          sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                        >
                           {formatDuration(track.duration)}
                         </Typography>
                       </Stack>

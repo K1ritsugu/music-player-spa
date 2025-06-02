@@ -36,8 +36,10 @@ import {
   QueueMusic
 } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
+import { MobileHeader } from "@/widgets/mobile-header"
+import { MobileNavigation } from "@/widgets/mobile-navigation"
 import { 
-  useGetPlaylistByIdQuery, 
+  useGetPlaylistByIdQuery,
   useUpdatePlaylistMutation, 
   useDeletePlaylistMutation,
   useRemoveTrackFromPlaylistMutation
@@ -232,13 +234,19 @@ export default function PlaylistDetailPage() {
     <Alert severity="info" sx={{ mt: 2 }}>
       Плейлист не найден
     </Alert>
-  )
-
+  );
   return (
     <Box sx={{ display: "flex" }}>
+      <MobileHeader />
       <Sidebar onClose={() => {}} />
 
-      <Box sx={{ flexGrow: 1, p: 3, ml: "240px", pb: "100px" }}>
+      <Box sx={{ 
+        flexGrow: 1, 
+        p: { xs: 2, sm: 3 }, 
+        ml: { xs: 0, md: "240px" }, 
+        pt: { xs: 2, md: 3 }, 
+        pb: { xs: "340px", md: "100px" }
+      }}>
         <Container maxWidth="lg">
           <Box sx={{ mb: 4 }}>
             <Button
@@ -385,17 +393,23 @@ export default function PlaylistDetailPage() {
 
           <Box sx={{ mt: 4 }}>
             {playlist.tracks && playlist.tracks.length > 0 ? (
-              <Box sx={{ width: "100%" }}>
-                <Box sx={{ py: 1, px: 2, display: "flex", borderBottom: 1, borderColor: "divider" }}>
-                  <Box sx={{ width: 30, mr: 1 }}>#</Box>
-                  <Box sx={{ flexGrow: 1 }}>НАЗВАНИЕ</Box>
-                  <Box sx={{ width: 120 }}>АЛЬБОМ</Box>
-                  <Box sx={{ width: 80, textAlign: "right" }}>ВРЕМЯ</Box>
-                  <Box sx={{ width: 40 }}></Box>
+              <Box sx={{ width: "100%" }}>                <Box sx={{ 
+                  py: 1, 
+                  px: 2, 
+                  display: "flex", 
+                  borderBottom: 1, 
+                  borderColor: "divider",
+                  overflowX: "auto",
+                  width: "100%"
+                }}>
+                  <Box sx={{ width: 30, mr: 1, minWidth: 30 }}>#</Box>
+                  <Box sx={{ flexGrow: 1, minWidth: 100 }}>НАЗВАНИЕ</Box>
+                  <Box sx={{ width: 120, display: { xs: "none", sm: "block" } }}>АЛЬБОМ</Box>
+                  <Box sx={{ width: 80, textAlign: "right", minWidth: 60 }}>ВРЕМЯ</Box>
+                  <Box sx={{ width: 40, minWidth: 40 }}></Box>
                 </Box>
 
-                {playlist.tracks.map((track, index) => (
-                  <Box 
+                {playlist.tracks.map((track, index) => (                  <Box 
                     key={track.id} 
                     sx={{ 
                       py: 1, 
@@ -410,11 +424,18 @@ export default function PlaylistDetailPage() {
                         "& .play-icon": { opacity: 1 },
                         "& .track-number": { opacity: 0 }
                       },
-                      cursor: "pointer"
+                      cursor: "pointer",
+                      overflowX: "auto",
+                      width: "100%"
                     }}
-                    onClick={() => handlePlayTrack(event as any, index)}
-                  >
-                    <Box sx={{ width: 30, mr: 1, position: "relative" }}>
+                    onClick={(event) => {
+                      // Не воспроизводить трек, если клик был по меню или кнопке с тремя точками
+                      if ((event.target as HTMLElement).closest('.track-menu-button')) {
+                        return;
+                      }
+                      handlePlayTrack(event, index);
+                    }}
+                  >                    <Box sx={{ width: 30, mr: 1, position: "relative", minWidth: 30 }}>
                       <Typography 
                         variant="body2" 
                         color="text.secondary" 
@@ -437,36 +458,40 @@ export default function PlaylistDetailPage() {
                         }} 
                       />
                     </Box>
-                    <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1, mr: 1 }}>
+                    <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1, mr: 1, minWidth: 100, overflow: "hidden" }}>
                       <CardMedia
                         component="img"
-                        sx={{ width: 40, height: 40, mr: 2, borderRadius: 1 }}
+                        sx={{ width: 40, height: 40, mr: 2, borderRadius: 1, flexShrink: 0 }}
                         image={track.coverUrl || '/placeholder.jpg'}
                         alt={track.title}
                       />
-                      <Box>
-                        <Typography variant="body1" sx={{ color: track.id === currentTrack?.id ? "primary.main" : "text.primary" }}>
+                      <Box sx={{ minWidth: 0 }}>
+                        <Typography variant="body1" noWrap sx={{ color: track.id === currentTrack?.id ? "primary.main" : "text.primary" }}>
                           {track.title}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2" color="text.secondary" noWrap>
                           {track.artist}
                         </Typography>
                       </Box>
                     </Box>
-                    <Box sx={{ width: 120 }}>
+                    <Box sx={{ width: 120, display: { xs: "none", sm: "block" } }}>
                       <Typography variant="body2" color="text.secondary" noWrap>
                         {track.album}
                       </Typography>
                     </Box>
-                    <Box sx={{ width: 80, textAlign: "right" }}>
+                    <Box sx={{ width: 80, textAlign: "right", minWidth: 60 }}>
                       <Typography variant="body2" color="text.secondary">
                         {formatTime(track.duration)}
                       </Typography>
                     </Box>
-                    <Box sx={{ width: 40, textAlign: "right" }}>
+                    <Box sx={{ width: 40, textAlign: "right", minWidth: 40 }}>
                       <IconButton 
                         size="small" 
-                        onClick={(e) => handleTrackMenuOpen(e, track.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleTrackMenuOpen(e, track.id);
+                        }}
+                        className="track-menu-button"
                       >
                         <MoreVert fontSize="small" />
                       </IconButton>
@@ -563,10 +588,10 @@ export default function PlaylistDetailPage() {
               >
                 {isUpdating ? <CircularProgress size={20} /> : "Сохранить"}
               </Button>
-            </DialogActions>
-          </Dialog>
+            </DialogActions>          </Dialog>
         </Container>
       </Box>
+      <MobileNavigation />
     </Box>
   )
 }

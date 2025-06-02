@@ -21,10 +21,11 @@ import { ThemeToggle } from "@/features/theme"
 const DRAWER_WIDTH = 240
 
 interface SidebarProps {
+  open?: boolean
   onClose: () => void
 }
 
-export const Sidebar = ({ onClose }: SidebarProps) => {
+export const Sidebar = ({ open, onClose }: SidebarProps) => {
   const navigate = useNavigate()
   const location = useLocation()
   const user = useAppSelector(selectCurrentUser)
@@ -41,10 +42,11 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
     navigate(path)
     onClose()
   }
-
   return (
     <Drawer
-      variant="permanent"
+      variant={open !== undefined ? "temporary" : "permanent"}
+      open={open !== undefined ? open : true}
+      onClose={onClose}
       sx={{
         width: DRAWER_WIDTH,
         flexShrink: 0,
@@ -55,6 +57,17 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
           borderRight: "1px solid",
           borderColor: "divider",
         },
+        // Для мобильных устройств
+        ...(open !== undefined && {
+          display: { xs: "block", md: "none" },
+        }),
+        // Для десктопа
+        ...(open === undefined && {
+          display: { xs: "none", md: "block" },
+        }),
+      }}
+      ModalProps={{
+        keepMounted: true, // Улучшает производительность на мобильных
       }}
     >
       <Box sx={{ p: 2 }}>

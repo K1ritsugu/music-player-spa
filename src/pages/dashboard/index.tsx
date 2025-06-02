@@ -17,6 +17,8 @@ import {
   TrendingUp 
 } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
+import { MobileHeader } from "@/widgets/mobile-header"
+import { MobileNavigation } from "@/widgets/mobile-navigation"
 import { TrackCard } from "@/shared/components/track-card"
 import { useAppSelector } from "@/shared/hooks"
 import { selectCurrentUser } from "@/features/auth"
@@ -56,12 +58,16 @@ export default function DashboardPage() {
       color: "#ff9800"
     }
   ]
-
   return (
     <Box sx={{ display: "flex" }}>
-      <Sidebar onClose={() => {}} />
-
-      <Box sx={{ flexGrow: 1, p: 3, ml: "240px", pb: "100px" }}>
+      <MobileHeader />
+      <Sidebar onClose={() => {}} />      <Box sx={{ 
+        flexGrow: 1, 
+        p: { xs: 2, sm: 3 }, 
+        ml: { xs: 0, md: "240px" }, 
+        pt: { xs: 2, md: 3 }, // Reduced top padding since no mobile header
+        pb: { xs: "340px", md: "100px" } // Increased bottom padding for player + mobile nav
+      }}>
         <Container maxWidth="lg">
           <Typography variant="h4" gutterBottom>
             Добро пожаловать, {user?.name}!
@@ -166,9 +172,9 @@ export default function DashboardPage() {
                 Административные функции: управление пользователями, модерация контента, системная аналитика
               </Alert>
             </>
-          )}
-        </Container>
+          )}        </Container>
       </Box>
+      <MobileNavigation />
     </Box>
   )
 }

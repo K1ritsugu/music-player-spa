@@ -4,7 +4,7 @@ import type { Track } from "@/shared/types"
 export const tracksApi = createApi({
   reducerPath: "tracksApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3002/api/tracks",
+    baseUrl: `http://localhost:3002/api/tracks`,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as any).auth.token
       if (token) {

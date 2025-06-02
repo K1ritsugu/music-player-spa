@@ -24,7 +24,7 @@
       "genre": "Other",
       "releaseDate": "2025-06-01",
       "playCount": 0,
-      "isLiked": false,
+      "isLiked": true,
       "createdBy": "1748803115743",
       "createdAt": "2025-06-01T20:30:03.579Z"
     },
@@ -84,9 +84,99 @@
       "genre": "Electronic",
       "releaseDate": "2025-06-01",
       "playCount": 0,
-      "isLiked": false,
+      "isLiked": true,
       "createdBy": "1748803115743",
       "createdAt": "2025-06-01T21:32:56.014Z"
+    },
+    {
+      "id": "1748820408115",
+      "title": "ƪ. ◖ƪ❍⊁◞.｜◗щ (＊ㅇ△₊⁎❝᷀ົཽ＊ೃ",
+      "artist": "⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ",
+      "album": ")✧⃛*",
+      "duration": 190,
+      "url": "/audio/1748820408101_ƪ. ◖ƪ❍⊁◞.｜◗щ (＊ㅇ△₊⁎❝᷀ົཽ＊ೃ：(꒡͡  ❝᷀ົཽ ꉺ¨.·＊：･✧⃛(ཽ๑ - ♡ trinity's laptop ♡.mp3",
+      "coverUrl": "/images/1748820408109_a0575698483_5.jpg",
+      "genre": "Country",
+      "releaseDate": "2025-06-01",
+      "playCount": 0,
+      "isLiked": true,
+      "createdBy": "1748803115743",
+      "createdAt": "2025-06-01T23:26:48.115Z"
+    },
+    {
+      "id": "1748823447320",
+      "title": "Баленгуяга",
+      "artist": "FENDIGLOCK ",
+      "album": "NO TUNE",
+      "duration": 96,
+      "url": "/audio/1748823447307_Баленгуяга.mp3",
+      "coverUrl": "/images/1748823447314_artworks-syGM3Ib5eAtXhuID-kCoqXQ-t500x500.jpg",
+      "genre": "Hip-Hop",
+      "releaseDate": "2025-06-02",
+      "playCount": 0,
+      "isLiked": false,
+      "createdBy": "1748803115743",
+      "createdAt": "2025-06-02T00:17:27.320Z"
+    },
+    {
+      "id": "1748824083959",
+      "title": "Эстетика Плага",
+      "artist": "OG Buda, Слава КПСС",
+      "album": "LAZER SLAVA",
+      "duration": 206,
+      "url": "/audio/1748824083946_Эстетика Плага - OG Buda.mp3",
+      "coverUrl": "/images/1748824083953_pic.jpg",
+      "genre": "Country",
+      "releaseDate": "2025-06-02",
+      "playCount": 0,
+      "isLiked": false,
+      "createdBy": "1748803115743",
+      "createdAt": "2025-06-02T00:28:03.959Z"
+    },
+    {
+      "id": "1748824121905",
+      "title": "LAZER SLAVA",
+      "artist": "OG Buda, Слава КПСС",
+      "album": "LAZER SLAVA",
+      "duration": 117,
+      "url": "/audio/1748824121895_OG Buda, Слава КПСС – LAZER SLAVA - OG BUDA.mp3",
+      "coverUrl": "/images/1748824121900_pic.jpg",
+      "genre": "R&B",
+      "releaseDate": "2025-06-02",
+      "playCount": 0,
+      "isLiked": false,
+      "createdBy": "1748803115743",
+      "createdAt": "2025-06-02T00:28:41.905Z"
+    },
+    {
+      "id": "1748824612235",
+      "title": "Крабовое Оружие",
+      "artist": "GONE.Fludd",
+      "album": "Крабовое Оружие",
+      "duration": 140,
+      "url": "/audio/1748824612222_Крабовое Оружие - GONE.Fludd.mp3",
+      "coverUrl": "/images/1748824612229_656aed609c567af6dafd9ce2e9b15dbe.1000x1000x1.png",
+      "genre": "Classical",
+      "releaseDate": "2025-06-02",
+      "playCount": 0,
+      "isLiked": false,
+      "createdBy": "1748803115743",
+      "createdAt": "2025-06-02T00:36:52.235Z"
+    },
+    {
+      "id": "1748824716508",
+      "title": "Honeythief",
+      "artist": "Halou",
+      "album": "Honeythief",
+      "duration": 189,
+      "url": "/audio/1748824716496_Honeythief - Halou.mp3",
+      "coverUrl": "/images/1748824716502_7b24aa14bce3c9348a4d34dcb86e1e54.700x700x1.jpg",
+      "genre": "Jazz",
+      "releaseDate": "2025-06-02",
+      "playCount": 0,
+      "isLiked": false,
+      "createdBy": "1748803115743",
+      "createdAt": "2025-06-02T00:38:36.508Z"
     }
   ],
   "playlists": [
@@ -116,7 +206,7 @@
       "createdBy": "1748805984617",
       "isPublic": true,
       "createdAt": "2025-06-01T17:05:00.173Z",
-      "updatedAt": "2025-06-01T21:21:49.118Z"
+      "updatedAt": "2025-06-02T00:36:00.638Z"
     },
     {
       "id": "1748808940969",
@@ -194,7 +284,7 @@
       "createdBy": "1748803115743",
       "isPublic": true,
       "createdAt": "2025-06-01T20:15:40.969Z",
-      "updatedAt": "2025-06-01T21:33:15.000Z"
+      "updatedAt": "2025-06-02T00:36:00.638Z"
     },
     {
       "id": "1748813032373",
@@ -216,15 +306,31 @@
           "isLiked": true,
           "createdBy": "1748803115743",
           "createdAt": "2025-06-01T21:22:45.421Z"
+        },
+        {
+          "id": "1748823447320",
+          "title": "Баленгуяга",
+          "artist": "FENDIGLOCK ",
+          "album": "NO TUNE",
+          "duration": 96,
+          "url": "/audio/1748823447307_Баленгуяга.mp3",
+          "coverUrl": "/images/1748823447314_artworks-syGM3Ib5eAtXhuID-kCoqXQ-t500x500.jpg",
+          "genre": "Hip-Hop",
+          "releaseDate": "2025-06-02",
+          "playCount": 0,
+          "isLiked": false,
+          "createdBy": "1748803115743",
+          "createdAt": "2025-06-02T00:17:27.320Z"
         }
       ],
       "trackIds": [
-        "1748812965421"
+        "1748812965421",
+        "1748823447320"
       ],
       "createdBy": "1748803115743",
       "isPublic": false,
       "createdAt": "2025-06-01T21:23:52.373Z",
-      "updatedAt": "2025-06-01T21:23:58.710Z"
+      "updatedAt": "2025-06-02T14:53:03.338Z"
     }
   ],
   "users": [
@@ -245,6 +351,14 @@
       "avatarUrl": "/avatars/1748805989710_Снимок экрана 2025-04-23 001221.png",
       "createdAt": "2025-06-01T19:26:24.617Z",
       "updatedAt": "2025-06-01T19:27:23.010Z"
+    },
+    {
+      "id": "1748877741655",
+      "email": "123123@212",
+      "name": "Новый пользователь",
+      "role": "listener",
+      "avatarUrl": null,
+      "createdAt": "2025-06-02T15:22:21.655Z"
     }
   ],
   "favoriteTracks": [

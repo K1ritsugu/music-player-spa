@@ -33,12 +33,14 @@ import {
   QueueMusic
 } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
+import { MobileHeader } from "@/widgets/mobile-header"
+import { MobileNavigation } from "@/widgets/mobile-navigation"
 import { TrackCard } from "@/shared/components/track-card"
 import { useGetUserTracksQuery } from "@/entities/track/api"
 import { useAppSelector, useAppDispatch } from "@/shared/hooks"
 import { selectCurrentUser } from "@/features/auth"
 import { selectCurrentTrack, selectIsPlaying } from "@/features/player/model"
-import { setQueue, playTrack, togglePlay } from "@/features/player/model"
+import { setQueue, playTrack, togglePlay, addToQueue } from "@/features/player/model"
 import type { Track } from "@/shared/types"
 
 export default function MyTracksPage() {
@@ -94,12 +96,16 @@ export default function MyTracksPage() {
     }
     return `${minutes} мин`
   }
-
-  if (isLoading) {
-    return (
+  if (isLoading) {    return (
       <Box sx={{ display: "flex" }}>
+        <MobileHeader />
         <Sidebar onClose={() => {}} />
-        <Box sx={{ flexGrow: 1, p: 3, ml: "240px" }}>
+        <Box sx={{ 
+          flexGrow: 1, 
+          p: { xs: 2, sm: 3 }, 
+          ml: { xs: 0, md: "240px" }, 
+          pt: { xs: 2, md: 3 } 
+        }}>
           <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
             <CircularProgress />
           </Box>
@@ -107,12 +113,16 @@ export default function MyTracksPage() {
       </Box>
     )
   }
-
   if (error) {
-    return (
-      <Box sx={{ display: "flex" }}>
+    return (      <Box sx={{ display: "flex" }}>
+        <MobileHeader />
         <Sidebar onClose={() => {}} />
-        <Box sx={{ flexGrow: 1, p: 3, ml: "240px" }}>
+        <Box sx={{ 
+          flexGrow: 1, 
+          p: { xs: 2, sm: 3 }, 
+          ml: { xs: 0, md: "240px" }, 
+          pt: { xs: 2, md: 3 } 
+        }}>
           <Container maxWidth="lg">
             <Alert severity="error" sx={{ mt: 2 }}>
               Ошибка при загрузке треков
@@ -121,13 +131,16 @@ export default function MyTracksPage() {
         </Box>
       </Box>
     )
-  }
-
-  return (
+  }  return (
     <Box sx={{ display: "flex" }}>
-      <Sidebar onClose={() => {}} />
-      
-      <Box sx={{ flexGrow: 1, p: 3, ml: "240px", pb: "100px" }}>
+      <MobileHeader />
+      <Sidebar onClose={() => {}} />      <Box sx={{ 
+        flexGrow: 1, 
+        p: { xs: 2, sm: 3 }, 
+        ml: { xs: 0, md: "240px" }, 
+        pt: { xs: 2, md: 3 }, 
+        pb: { xs: "340px", md: "100px" } // Increased padding for mobile to make space for player + navigation
+      }}>
         <Container maxWidth="lg">
           <Box sx={{ mb: 4 }}>
             <Button
@@ -294,8 +307,8 @@ export default function MyTracksPage() {
             <Delete fontSize="small" />
           </ListItemIcon>
           <ListItemText>Удалить</ListItemText>
-        </MenuItem>
-      </Menu>
+        </MenuItem>      </Menu>
+      <MobileNavigation />
     </Box>
   )
 }

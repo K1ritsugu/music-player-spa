@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Box, Typography, Container, Button, Avatar, TextField, Paper, Stack, Alert } from "@mui/material"
 import { ExitToApp, CloudUpload, Save } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
+import { MobileHeader } from "@/widgets/mobile-header"
+import { MobileNavigation } from "@/widgets/mobile-navigation"
 import { useAppSelector, useAppDispatch } from "@/shared/hooks"
 import { selectCurrentUser, performLogout } from "@/features/auth"
 import { useNavigate } from "react-router-dom"
@@ -95,12 +97,17 @@ export default function ProfilePage() {
       setIsUpdating(false)
     }
   }
-
   return (
     <Box sx={{ display: "flex" }}>
+      <MobileHeader />
       <Sidebar onClose={() => {}} />
-
-      <Box sx={{ flexGrow: 1, p: 3, ml: "240px", pb: "100px" }}>
+        <Box sx={{ 
+        flexGrow: 1, 
+        p: { xs: 2, sm: 3 }, 
+        ml: { xs: 0, md: "240px" }, 
+        pt: { xs: 2, md: 3 }, 
+        pb: { xs: "340px", md: "100px" } // Increased padding for mobile to make space for player + navigation
+      }}>
         <Container maxWidth="md">
           <Typography variant="h4" gutterBottom>
             Профиль
@@ -187,10 +194,10 @@ export default function ProfilePage() {
                   Выйти из аккаунта
                 </Button>
               </Stack>
-            </Stack>
-          </Paper>
+            </Stack>          </Paper>
         </Container>
       </Box>
+      <MobileNavigation />
     </Box>
   )
 }

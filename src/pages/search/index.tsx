@@ -13,6 +13,8 @@ import {
 } from "@mui/material"
 import { Search as SearchIcon } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
+import { MobileHeader } from "@/widgets/mobile-header"
+import { MobileNavigation } from "@/widgets/mobile-navigation"
 import { TrackCard } from "@/shared/components/track-card"
 import { useGetTracksQuery } from "@/entities/track/api"
 
@@ -30,12 +32,16 @@ export default function SearchPage() {
   const handleGenreToggle = (genre: string) => {
     setSelectedGenre(selectedGenre === genre ? "" : genre)
   }
-
   return (
     <Box sx={{ display: "flex" }}>
-      <Sidebar onClose={() => {}} />
-
-      <Box sx={{ flexGrow: 1, p: 3, ml: "240px", pb: "100px" }}>
+      <MobileHeader />
+      <Sidebar onClose={() => {}} />      <Box sx={{ 
+        flexGrow: 1, 
+        p: { xs: 2, sm: 3 }, 
+        ml: { xs: 0, md: "240px" }, 
+        pt: { xs: 2, md: 3 }, 
+        pb: { xs: "340px", md: "100px" } // Increased padding for mobile to make space for player + navigation
+      }}>
         <Container maxWidth="lg">
           <Typography variant="h4" gutterBottom>
             Поиск музыки
@@ -103,9 +109,9 @@ export default function SearchPage() {
             <Typography variant="body1" color="text.secondary" sx={{ mt: 4, textAlign: "center" }}>
               По вашему запросу ничего не найдено
             </Typography>
-          )}
-        </Container>
+          )}        </Container>
       </Box>
+      <MobileNavigation />
     </Box>
   )
 }

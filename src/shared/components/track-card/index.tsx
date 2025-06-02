@@ -111,7 +111,6 @@ export const TrackCard: React.FC<TrackCardProps> = ({
 
   // Check if current user can delete this track
   const canDeleteTrack = user && track.createdBy === user.id
-
   if (variant === "compact") {
     return (
       <Card
@@ -124,11 +123,20 @@ export const TrackCard: React.FC<TrackCardProps> = ({
           "&:hover": {
             backgroundColor: "action.hover",
           },
+          width: "100%",
+          overflowX: "hidden"
         }}
-        onClick={handlePlayPause}
+        onClick={(e) => {
+          // Если клик на IconButton, не воспроизводить трек
+          if ((e.target as HTMLElement).closest('button')) {
+            e.stopPropagation();
+            return;
+          }
+          handlePlayPause();
+        }}
       >
         {showIndex && (
-          <Box sx={{ minWidth: 40, textAlign: "center" }}>
+          <Box sx={{ minWidth: 40, textAlign: "center", flexShrink: 0 }}>
             <Typography variant="body2" color="text.secondary">
               {showIndex}
             </Typography>
@@ -136,31 +144,63 @@ export const TrackCard: React.FC<TrackCardProps> = ({
         )}
         <CardMedia
           component="img"
-          sx={{ width: 56, height: 56, borderRadius: 1 }}
+          sx={{ width: 56, height: 56, borderRadius: 1, flexShrink: 0 }}
           image={track.coverUrl || "/placeholder.jpg"}
           alt={track.title}
         />
-        <Box sx={{ display: "flex", flexDirection: "column", flex: 1, ml: 2 }}>
+        <Box sx={{ 
+          display: "flex", 
+          flexDirection: "column", 
+          flex: 1, 
+          ml: 2,
+          minWidth: 0, // Важно для работы noWrap
+          overflow: "hidden"
+        }}>
           <Typography variant="body1" noWrap>
             {track.title}
           </Typography>
           <Typography variant="body2" color="text.secondary" noWrap>
             {track.artist}
           </Typography>
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <Typography variant="caption" color="text.secondary">
+        </Box>        <Box sx={{ 
+          display: "flex", 
+          alignItems: "center", 
+          gap: { xs: 0.5, sm: 1 },
+          flexShrink: 0 
+        }}>
+          <Typography variant="caption" color="text.secondary" sx={{ display: { xs: 'none', sm: 'block' } }}>
             {formatDuration(track.duration)}
           </Typography>
-          <IconButton size="small" onClick={handleToggleFavorite}>
+          <IconButton 
+            size="small" 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleToggleFavorite();
+            }}
+          >
             {track.isLiked ? (
               <Favorite color="primary" fontSize="small" />
             ) : (
               <FavoriteBorder fontSize="small" />
             )}
           </IconButton>
-          <IconButton size="small" onClick={handlePlayPause}>
+          <IconButton 
+            size="small" 
+            onClick={(e) => {
+              e.stopPropagation();
+              handlePlayPause();
+            }}
+          >
             {isTrackPlaying ? <Pause /> : <PlayArrow />}
+          </IconButton>
+          <IconButton
+            size="small"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleMenuOpen(e);
+            }}
+          >
+            <MoreVert fontSize="small" />
           </IconButton>
         </Box>
       </Card>

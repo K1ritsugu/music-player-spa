@@ -18,7 +18,7 @@ interface LoginResponse {
 }
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3002/api/auth",
+  baseUrl: `http://localhost:3002/api/auth`,
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as any).auth.token
     if (token) {

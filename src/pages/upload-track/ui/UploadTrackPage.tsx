@@ -31,6 +31,8 @@ import {
   PlayArrow
 } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
+import { MobileHeader } from "@/widgets/mobile-header"
+import { MobileNavigation } from "@/widgets/mobile-navigation"
 import { useCreateTrackMutation } from "@/entities/track/api"
 import type { Track } from "@/shared/types"
 
@@ -345,17 +347,21 @@ export default function UploadTrackPage() {
         setAudioFile(null)
         setCoverFile(null)
         setSuccess(false)
-      }, 2000)
-
-    } catch (err) {
+      }, 2000)    } catch (err) {
       console.error("Error creating track:", err)
     }
   }
   return (
     <Box sx={{ display: "flex" }}>
+      <MobileHeader />
       <Sidebar onClose={() => {}} />
-      
-      <Box sx={{ flexGrow: 1, p: 3, ml: "240px", pb: "100px" }}>
+        <Box sx={{ 
+        flexGrow: 1, 
+        p: { xs: 2, sm: 3 }, 
+        ml: { xs: 0, md: "240px" }, 
+        pt: { xs: 2, md: 3 }, 
+        pb: { xs: "340px", md: "100px" } // Increased padding for mobile to make space for player + navigation
+      }}>
         <Container maxWidth="md">
           <Box sx={{ mb: 4 }}>
             <Button
@@ -548,9 +554,9 @@ export default function UploadTrackPage() {
                 </Grid>
               </Grid>
             </Box>
-          </Paper>
-        </Container>
+          </Paper>        </Container>
       </Box>
+      <MobileNavigation />
     </Box>
   )
 }

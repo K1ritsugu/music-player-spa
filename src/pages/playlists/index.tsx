@@ -29,8 +29,10 @@ import {
   Lock
 } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
+import { MobileHeader } from "@/widgets/mobile-header"
+import { MobileNavigation } from "@/widgets/mobile-navigation"
 import { 
-  useGetPlaylistsQuery, 
+  useGetPlaylistsQuery,
   useCreatePlaylistMutation, 
   useDeletePlaylistMutation,
   useUpdatePlaylistMutation
@@ -121,12 +123,17 @@ export default function PlaylistsPage() {
       await deletePlaylist(playlistId)
     }
   }
-
   return (
     <Box sx={{ display: "flex" }}>
+      <MobileHeader />
       <Sidebar onClose={() => {}} />
 
-      <Box sx={{ flexGrow: 1, p: 3, ml: "240px", pb: "100px" }}>
+      <Box sx={{ 
+        flexGrow: 1,        p: { xs: 2, sm: 3 }, 
+        ml: { xs: 0, md: "240px" }, 
+        pt: { xs: 2, md: 3 }, // Reduced top padding since no mobile header
+        pb: { xs: "340px", md: "100px" } // Increased bottom padding for player + mobile nav
+      }}>
         <Container maxWidth="lg">
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4 }}>
             <Typography variant="h4">
@@ -299,10 +306,10 @@ export default function PlaylistsPage() {
               >
                 {isCreating ? <CircularProgress size={20} /> : "Создать"}
               </Button>
-            </DialogActions>
-          </Dialog>
+            </DialogActions>          </Dialog>
         </Container>
       </Box>
+      <MobileNavigation />
     </Box>
   )
 }

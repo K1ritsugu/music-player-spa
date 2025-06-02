@@ -15,7 +15,8 @@ import {
   setDuration,
   nextTrack,
   previousTrack,
-  toggleRepeat
+  toggleRepeat,
+  setCurrentTrack
 } from "@/features/player/model"
 import { useToggleFavoriteMutation } from "@/entities/track/api"
 import { QueueDialog } from "@/shared/components/queue-dialog"
@@ -112,11 +113,18 @@ export const PlayerWidget = () => {
       dispatch(setCurrentTime(time))
     }
   }
-
   const handleToggleFavorite = async () => {
     if (currentTrack) {
       try {
         await toggleFavorite(currentTrack.id)
+        // Обновим локально состояние трека, инвертируя статус isLiked
+        if (currentTrack) {
+          const updatedTrack = { 
+            ...currentTrack, 
+            isLiked: !currentTrack.isLiked 
+          }
+          dispatch(setCurrentTrack(updatedTrack))
+        }
       } catch (error) {
         console.error("Error toggling favorite:", error)
       }
@@ -129,20 +137,18 @@ export const PlayerWidget = () => {
     const seconds = Math.floor(time % 60)
     return `${minutes}:${seconds.toString().padStart(2, "0")}`
   }
-
   if (!currentTrack) {
     return (
-      <Card
-        sx={{
+      <Card        sx={{
           position: "fixed",
           bottom: 0,
-          left: { xs: 0, sm: 240 }, // Adjusted for sidebar
+          left: { xs: 0, md: 240 }, // На мобильных занимает всю ширину
           right: 0,
           zIndex: 1000,
           borderRadius: 0,
           backgroundColor: (theme) => theme.palette.mode === 'dark' ? "#181818" : "#f5f5f5",
           borderTop: (theme) => `1px solid ${theme.palette.mode === 'dark' ? "#282828" : "#e0e0e0"}`,
-          p: 2,
+          p: { xs: 1, sm: 2 },
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -160,19 +166,17 @@ export const PlayerWidget = () => {
         ref={audioRef}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
-        onEnded={handleTrackEnd}
-      />
-      <Card
+        onEnded={handleTrackEnd}      />      <Card
         sx={{
           position: "fixed",
-          bottom: 0,
-          left: { xs: 0, sm: 240 }, // Adjusted for sidebar
+          bottom: { xs: "56px", md: 0 }, // Account for mobile navigation
+          left: { xs: 0, md: 240 }, // На мобильных занимает всю ширину
           right: 0,
           zIndex: 1000,
           borderRadius: 0,
           backgroundColor: (theme) => theme.palette.mode === 'dark' ? "#181818" : "#f5f5f5",
           borderTop: (theme) => `1px solid ${theme.palette.mode === 'dark' ? "#282828" : "#e0e0e0"}`,
-          p: 2,
+          p: { xs: 1, sm: 2 },
         }}
       >
         <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: "center", gap: 2 }}>
@@ -271,29 +275,19 @@ export const PlayerWidget = () => {
                 {formatTime(duration)}
               </Typography>
             </Box>
-          </Box>
-
-          {/* Громкость */}
+          </Box>          {/* Громкость - теперь показываем на всех устройствах */}
           <Box sx={{ 
-            display: { xs: "none", md: "flex" }, 
+            display: "flex", 
             alignItems: "center", 
-            minWidth: { md: 150 }
+            minWidth: { xs: 100, md: 150 }
           }}>
-            <VolumeUp sx={{ mr: 1 }} />
+            <VolumeUp sx={{ mr: 1, fontSize: { xs: "small", md: "medium" } }} />
             <Slider
               size="small"
               value={volume}
               onChange={handleVolumeChange}
-              sx={{ width: 100 }}
+              sx={{ width: { xs: 80, md: 100 } }}
             />
-          </Box>
-
-          {/* Кнопка очереди */}
-          <Box sx={{ 
-            display: "flex", 
-            alignItems: "center", 
-            minWidth: 40
-          }}>
             <IconButton 
               onClick={() => setQueueDialogOpen(true)}
               size="small"
@@ -302,22 +296,7 @@ export const PlayerWidget = () => {
               <QueueMusic />
             </IconButton>
           </Box>
-        </Box>
-        
-        {/* Отображение текущего трека в нижней части для мобильных устройств */}
-        <Box 
-          sx={{ 
-            display: { xs: "flex", sm: "none" },
-            justifyContent: "center",
-            mt: 1,
-            pt: 1,
-            borderTop: theme => `1px solid ${theme.palette.mode === 'dark' ? "#282828" : "#e0e0e0"}`,
-          }}
-        >
-          <Typography variant="body2" color="text.secondary" noWrap textAlign="center">
-            {currentTrack.title} • {currentTrack.artist}
-          </Typography>
-        </Box>
+          </Box>
       </Card>
       
       {/* Диалог очереди воспроизведения */}

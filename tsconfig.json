@@ -16,6 +16,7 @@
     "noEmit": true,
     "jsx": "preserve",
     "strict": true,
+    "types": ["vite/client"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
