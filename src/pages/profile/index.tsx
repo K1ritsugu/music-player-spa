@@ -47,11 +47,12 @@ export default function ProfilePage() {
     
     try {
       let avatarUrl = user.avatarUrl
-        if (avatarFile) {
+      
+      if (avatarFile) {
         const formData = new FormData()
         formData.append('avatar', avatarFile)
         
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/upload/avatar`, {
+        const response = await fetch('http://localhost:3002/api/upload/avatar', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -66,8 +67,9 @@ export default function ProfilePage() {
           throw new Error('Ошибка загрузки аватара')
         }
       }
-        // Обновляем профиль
-      const updateResponse = await fetch(`${import.meta.env.VITE_API_URL}/auth/profile`, {
+      
+      // Обновляем профиль
+      const updateResponse = await fetch('http://localhost:3002/api/auth/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
