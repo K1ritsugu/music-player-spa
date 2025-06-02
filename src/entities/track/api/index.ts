@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import type { Track } from "@/shared/types"
+import { API_TRACKS_URL } from "@/shared/config/env"
 
 export const tracksApi = createApi({
   reducerPath: "tracksApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://localhost:3002/api/tracks`,
+    baseUrl: API_TRACKS_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as any).auth.token
       if (token) {

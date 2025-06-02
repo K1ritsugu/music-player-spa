@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import type { Playlist } from "@/shared/types"
+import { API_PLAYLISTS_URL } from "@/shared/config/env"
 
 export const playlistsApi = createApi({
   reducerPath: "playlistsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "/api/playlists",
+    baseUrl: API_PLAYLISTS_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as any).auth.token
       if (token) {

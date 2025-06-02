@@ -287,11 +287,10 @@ export default function UploadTrackPage() {
     }
 
     try {
-      // Загружаем аудиофайл на сервер
-      const audioFormData = new FormData()
+      // Загружаем аудиофайл на сервер      const audioFormData = new FormData()
       audioFormData.append('audio', audioFile)
       
-      const audioResponse = await fetch('http://localhost:3002/api/upload/audio', {
+      const audioResponse = await fetch(`${import.meta.env.VITE_API_URL}/upload/audio`, {
         method: 'POST',
         body: audioFormData
       })
@@ -305,11 +304,10 @@ export default function UploadTrackPage() {
 
       // Загружаем обложку, если есть
       let coverUrl = "/placeholder.jpg"
-      if (coverFile) {
-        const coverFormData = new FormData()
+      if (coverFile) {        const coverFormData = new FormData()
         coverFormData.append('image', coverFile)
         
-        const coverResponse = await fetch('http://localhost:3002/api/upload/image', {
+        const coverResponse = await fetch(`${import.meta.env.VITE_API_URL}/upload/image`, {
           method: 'POST',
           body: coverFormData
         })
