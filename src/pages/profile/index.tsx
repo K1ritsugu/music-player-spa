@@ -6,8 +6,9 @@ import { ExitToApp, CloudUpload, Save } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
 import { MobileHeader } from "@/widgets/mobile-header"
 import { MobileNavigation } from "@/widgets/mobile-navigation"
-import { useAppSelector, useAppDispatch } from "@/shared/hooks"
-import { selectCurrentUser, performLogout } from "@/features/auth"
+import { useAppSelector, useAppDispatch } from '@/shared/hooks'
+import { selectCurrentUser, performLogout } from '@/features/auth'
+import { API_URL } from '@/shared/config'
 import { useNavigate } from "react-router-dom"
 
 export default function ProfilePage() {
@@ -52,7 +53,7 @@ export default function ProfilePage() {
         const formData = new FormData()
         formData.append('avatar', avatarFile)
         
-        const response = await fetch('http://localhost:3002/api/upload/avatar', {
+        const response = await fetch(`${API_URL}/api/upload/avatar`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -69,7 +70,7 @@ export default function ProfilePage() {
       }
       
       // Обновляем профиль
-      const updateResponse = await fetch('http://localhost:3002/api/auth/profile', {
+      const updateResponse = await fetch(`${API_URL}/api/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useState, useCallback } from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useState, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Box,
   Typography,
@@ -30,11 +30,12 @@ import {
   Delete as DeleteIcon,
   PlayArrow
 } from "@mui/icons-material"
-import { Sidebar } from "@/widgets/sidebar"
-import { MobileHeader } from "@/widgets/mobile-header"
-import { MobileNavigation } from "@/widgets/mobile-navigation"
-import { useCreateTrackMutation } from "@/entities/track/api"
-import type { Track } from "@/shared/types"
+import { Sidebar } from '@/widgets/sidebar'
+import { MobileHeader } from '@/widgets/mobile-header'
+import { MobileNavigation } from '@/widgets/mobile-navigation'
+import { useCreateTrackMutation } from '@/entities/track/api'
+import type { Track } from '@/shared/types'
+import { API_URL } from '@/shared/config'
 
 const genres = [
   "Pop",
@@ -291,7 +292,7 @@ export default function UploadTrackPage() {
       const audioFormData = new FormData()
       audioFormData.append('audio', audioFile)
       
-      const audioResponse = await fetch('http://localhost:3002/api/upload/audio', {
+      const audioResponse = await fetch(`${API_URL}/api/upload/audio`, {
         method: 'POST',
         body: audioFormData
       })
@@ -309,7 +310,7 @@ export default function UploadTrackPage() {
         const coverFormData = new FormData()
         coverFormData.append('image', coverFile)
         
-        const coverResponse = await fetch('http://localhost:3002/api/upload/image', {
+        const coverResponse = await fetch(`${API_URL}/api/upload/image`, {
           method: 'POST',
           body: coverFormData
         })
