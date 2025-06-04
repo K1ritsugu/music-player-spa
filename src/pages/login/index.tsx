@@ -23,6 +23,12 @@ const registerSchema = yup.object({
   password: yup.string().min(6, "Минимум 6 символов").required("Пароль обязателен"),
 })
 
+interface FormFields {
+  email: string
+  password: string
+  name?: string
+}
+
 export default function LoginPage() {
   const [tab, setTab] = useState(0)
   const [error, setError] = useState<string | null>(null)
@@ -37,7 +43,7 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<FormFields>({
     resolver: yupResolver(tab === 0 ? loginSchema : registerSchema),
   })
 
@@ -71,7 +77,7 @@ export default function LoginPage() {
     }
   }
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue)
     setError(null)
     reset()

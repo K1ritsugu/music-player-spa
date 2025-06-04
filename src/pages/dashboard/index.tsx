@@ -30,7 +30,7 @@ export default function DashboardPage() {
   
   const { data: favorites = [], isLoading: favoritesLoading } = useGetFavoriteTracksQuery()
   const { data: recommendations = [], isLoading: recommendationsLoading } = useGetRecommendationsQuery()
-  const { data: playlists = [], isLoading: playlistsLoading } = useGetPlaylistsQuery()
+  const { data: playlists = [], isLoading: _playlistsLoading } = useGetPlaylistsQuery()
 
   const stats = [
     {
