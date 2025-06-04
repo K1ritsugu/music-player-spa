@@ -63,7 +63,6 @@ export default function PlaylistDetailPage() {
   const [editName, setEditName] = useState("")
   const [editDescription, setEditDescription] = useState("")
   const [editIsPublic, setEditIsPublic] = useState(true)
-  const [generatedCoverUrl, setGeneratedCoverUrl] = useState<string | null>(null)
 
   const { data: playlist, isLoading, error } = useGetPlaylistByIdQuery(id!)
   const [updatePlaylist, { isLoading: isUpdating }] = useUpdatePlaylistMutation()
@@ -77,7 +76,6 @@ export default function PlaylistDetailPage() {
       try {
         if (playlist.tracks && playlist.tracks.length > 0) {
           const coverUrl = await generatePlaylistCover(playlist.tracks, playlist.name, 300)
-          setGeneratedCoverUrl(coverUrl)
           
           if (!playlist.coverUrl || playlist.coverUrl === '/placeholder.jpg' || coverUrl !== playlist.coverUrl) {
             await updatePlaylist({
@@ -89,7 +87,6 @@ export default function PlaylistDetailPage() {
           }
         } else {
           const coverUrl = await generatePlaylistCover([], playlist.name, 300)
-          setGeneratedCoverUrl(coverUrl)
           
           if (!playlist.coverUrl || playlist.coverUrl === '/placeholder.jpg' || coverUrl !== playlist.coverUrl) {
             await updatePlaylist({
@@ -139,6 +136,7 @@ export default function PlaylistDetailPage() {
 
   const handleEditSave = async () => {
     try {
+      if (!playlist) return
       await updatePlaylist({
         id: playlist.id,
         updates: {

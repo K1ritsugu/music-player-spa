@@ -11,7 +11,6 @@ import {
   Alert,
   Button,
   Stack,
-  Chip,
   IconButton,
   Card,
   CardContent,
@@ -29,7 +28,6 @@ import {
   Edit,
   Delete,
   Share,
-  Download,
   QueueMusic
 } from "@mui/icons-material"
 import { Sidebar } from "@/widgets/sidebar"
@@ -38,15 +36,13 @@ import { MobileNavigation } from "@/widgets/mobile-navigation"
 import { TrackCard } from "@/shared/components/track-card"
 import { useGetUserTracksQuery } from "@/entities/track/api"
 import { useAppSelector, useAppDispatch } from "@/shared/hooks"
-import { selectCurrentUser } from "@/features/auth"
 import { selectCurrentTrack, selectIsPlaying } from "@/features/player/model"
-import { setQueue, playTrack, togglePlay, addToQueue } from "@/features/player/model"
+import { setQueue, playTrack, addToQueue } from "@/features/player/model"
 import type { Track } from "@/shared/types"
 
 export default function MyTracksPage() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const user = useAppSelector(selectCurrentUser)
   const currentTrack = useAppSelector(selectCurrentTrack)
   const isPlaying = useAppSelector(selectIsPlaying)
   
@@ -80,11 +76,6 @@ export default function MyTracksPage() {
     }
   }
 
-  const formatDuration = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60)
-    const remainingSeconds = seconds % 60
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`
-  }
 
   const getTotalDuration = () => {
     const total = tracks.reduce((sum, track) => sum + track.duration, 0)

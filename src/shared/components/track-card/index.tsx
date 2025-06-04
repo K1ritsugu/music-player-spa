@@ -126,14 +126,14 @@ export const TrackCard: React.FC<TrackCardProps> = ({
           width: "100%",
           overflowX: "hidden"
         }}
-        onClick={(e) => {
-          // Если клик на IconButton, не воспроизводить трек
-          if ((e.target as HTMLElement).closest('button')) {
-            e.stopPropagation();
-            return;
-          }
-          handlePlayPause();
-        }}
+          onClick={(e) => {
+            // Если клик на IconButton, не воспроизводить трек
+            if ((e.target as HTMLElement).closest('button')) {
+              e.stopPropagation();
+              return;
+            }
+            handlePlayPause(e);
+          }}
       >
         {showIndex && (
           <Box sx={{ minWidth: 40, textAlign: "center", flexShrink: 0 }}>
@@ -173,10 +173,10 @@ export const TrackCard: React.FC<TrackCardProps> = ({
           </Typography>
           <IconButton 
             size="small" 
-            onClick={(e) => {
-              e.stopPropagation();
-              handleToggleFavorite();
-            }}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleToggleFavorite(e);
+              }}
           >
             {track.isLiked ? (
               <Favorite color="primary" fontSize="small" />
@@ -186,10 +186,10 @@ export const TrackCard: React.FC<TrackCardProps> = ({
           </IconButton>
           <IconButton 
             size="small" 
-            onClick={(e) => {
-              e.stopPropagation();
-              handlePlayPause();
-            }}
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePlayPause(e);
+              }}
           >
             {isTrackPlaying ? <Pause /> : <PlayArrow />}
           </IconButton>
