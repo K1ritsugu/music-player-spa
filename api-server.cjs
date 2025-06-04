@@ -67,14 +67,6 @@ function saveFileToPublic(file, subDir = '') {
   }
 }
 
-function setCORSHeaders(res) {
-  // Ensure headers are written only once to avoid duplicate values
-  if (!res.headersSent) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  }
-}
 
 function sendJSON(res, statusCode, data) {
   res.writeHead(statusCode, { 'Content-Type': 'application/json' });
@@ -82,7 +74,6 @@ function sendJSON(res, statusCode, data) {
 }
 
 const server = http.createServer((req, res) => {
-  setCORSHeaders(res);
 
   if (req.method === 'OPTIONS') {
     res.writeHead(200);
