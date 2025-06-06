@@ -5,16 +5,26 @@ services:
       context: .
       dockerfile: Dockerfile.front
     ports:
-      - "80:80"
-      - "3002:3002"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt/live/jerkcloud.ru/fullchain.pem:/etc/letsencrypt/live/jerkcloud.ru/fullchain.pem:ro
+      - /etc/letsencrypt/live/jerkcloud.ru/privkey.pem:/etc/letsencrypt/live/jerkcloud.ru/privkey.pem:ro
     depends_on:
       - backend
+    networks:
+      - my_network
   backend:
     build:
       context: .
       dockerfile: Dockerfile.back
-    expose:
-      - "3002"
+    ports:
+      - "3002:3002"
+    networks:
+      - my_network
     volumes:
       - ./db.json:/app/db.json
       - ./public:/app/public
+
+networks:
+  my_network:
+    driver: bridge
